@@ -319,11 +319,11 @@ public class GameGUI extends Application {
         gameSceneAnchor.setLeftAnchor(pane, 20.0);
         gameSceneAnchor.setTopAnchor(hintBox, 385.0);
         gameSceneAnchor.setRightAnchor(hintBox, 20.0);
-        hintBox.setStyle("-fx-border-width: 3px; -fx-border-color: black; -fx-border-radius: 6px;" +
-                "-fx-background-radius: 8px; -fx-background-color: #DDB8A6;");
+        hintBox.setStyle("-fx-background-color: #DDB8A6; -fx-border-width: 3px; -fx-border-color: black; -fx-border-radius: 6px;" +
+                "-fx-background-radius: 8px;");
         pane.setStyle("-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 6px;" +
                 "-fx-background-color: #F8F8FF; -fx-padding: 20px 20px 20px 20px; -fx-background-radius: 8px;");
-        gameSceneAnchor.setStyle("-fx-background-color: #9B3A04");
+
 
         //This event handler is defined for when the player clicks on a line
         EventHandler<MouseEvent> linesHandler = new EventHandler<MouseEvent>() {
@@ -412,22 +412,13 @@ public class GameGUI extends Application {
                 vLine[i][j].setOnMouseExited(exitHandler);
             }
 
-        Label welcomeLabel = new Label("Welcome");
-        welcomeLabel.setFont(Font.font("Comic Sans MS", 70));
-        Label descriptionLabel = new Label("to Dots And Boxes");
-        descriptionLabel.setFont(Font.font("Comic Sans MS", 30));
         Button startButton = new Button("Start");
         startButton.setMinSize(200.0, 60.0);
-        startButton.setFont(Font.font(25));
-        vbox.getChildren().addAll(welcomeLabel, descriptionLabel);
-        menuBox.getChildren().addAll(vbox, startButton);
-        welcomePane.getChildren().add(menuBox);
-        vbox.setAlignment(Pos.CENTER);
-        menuBox.setAlignment(Pos.CENTER);
-        menuBox.setStyle("-fx-background-color: #EFD7A2; -fx-background-radius: 8px; -fx-border-color: black;" +
-                "-fx-border-width: 3px; -fx-border-radius: 6px; -fx-padding: 20px");
-        welcomePane.setTopAnchor(menuBox, 150.0);
-        welcomePane.setRightAnchor(menuBox, 255.0);
+        startButton.setFont(Font.font("Comic Sans MS", 25));
+        welcomePane.getChildren().add(startButton);
+        welcomePane.setTopAnchor(startButton, 400.0);
+        welcomePane.setRightAnchor(startButton, 325.0);
+
         Image image = new Image("file:Background.png");
         BackgroundImage bimage = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT,
@@ -436,6 +427,15 @@ public class GameGUI extends Application {
                 BackgroundSize.DEFAULT);
         Background bground = new Background(bimage);
         welcomePane.setBackground(bground);
+
+        Image gameImage = new Image("file:GameBackground.png");
+        BackgroundImage backImage = new BackgroundImage(gameImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+        Background backG = new Background(backImage);
+        gameSceneAnchor.setBackground(backG);
 
         Scene welcomeScreen = new Scene(welcomePane, 850, 640);
         Scene gameScreen = new Scene(gameSceneAnchor, 850, 640);
@@ -549,7 +549,7 @@ public class GameGUI extends Application {
                 regPlayer1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        if (players[0].getColor() != 0 && players[0].getColor() != 0) {
+                        if (players[0].getColor() != 0 && players[1].getColor() != 0) {
                             player1.setName(name1.getText());
                             currentPlayer = players[0];
                             registerWindow.setScene(registerScene2);
@@ -583,6 +583,7 @@ public class GameGUI extends Application {
                         nameScoreVBox.setStyle("-fx-background-color: #EAA157; -fx-background-radius: 8px;" +
                                 "-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 6px;" +
                                 "-fx-padding: 15px 10px 15px 10px");
+                        nameScoreVBox.setMaxSize(210, 250);
                         nameScoreVBox.setMinSize(210, 200);
                         gameSceneAnchor.getChildren().addAll(nameScoreVBox);
                         gameSceneAnchor.setTopAnchor(nameScoreVBox, 25.0);
